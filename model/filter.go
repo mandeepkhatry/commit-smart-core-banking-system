@@ -1,5 +1,9 @@
 package model
 
+/*
+	Set of all filters
+*/
+
 type Filter struct {
 	Limit  int64 `schema:"limit" json:"limit"  validate:"required"`
 	Page   int64 `schema:"page" json:"page"  validate:"required"`

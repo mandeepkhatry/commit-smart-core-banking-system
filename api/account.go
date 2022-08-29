@@ -27,6 +27,7 @@ func ListAccount(response http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	//Validate Request Body
 	validateResp := validator.ValidateRequest(filter)
 	if !validateResp.Validate {
 		http_response.ErrorResponse(response, http.StatusBadRequest, validateResp.Errors)

@@ -19,14 +19,15 @@ func Withdraw(response http.ResponseWriter, request *http.Request) {
 	var withdrawRequest model.TransactionRequest
 	json.NewDecoder(request.Body).Decode(&withdrawRequest)
 
+	//Validate Request Body
 	validateResp := validator.ValidateRequest(withdrawRequest)
 	if !validateResp.Validate {
 		http_response.ErrorResponse(response, http.StatusBadRequest, validateResp.Errors)
 		return
 	}
 
+	//Get AccountId From Token and Validate Account
 	withdrawRequest.AccountId = GetAccountIdFromRequest(request)
-
 	accountResponse := ValidateAccount(withdrawRequest.AccountId)
 
 	if !accountResponse.Validate {

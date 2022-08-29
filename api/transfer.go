@@ -19,14 +19,15 @@ func Transfer(response http.ResponseWriter, request *http.Request) {
 	var transferRequest model.TransferRequest
 	json.NewDecoder(request.Body).Decode(&transferRequest)
 
+	//Validate Request Body
 	validateResp := validator.ValidateRequest(transferRequest)
 	if !validateResp.Validate {
 		http_response.ErrorResponse(response, http.StatusBadRequest, validateResp.Errors)
 		return
 	}
 
+	//Get AccountId From Token and Validate Sernder's Account
 	transferRequest.AccountId = GetAccountIdFromRequest(request)
-	//Validate sender's account
 	senderAccountResponse := ValidateAccount(transferRequest.AccountId)
 	if !senderAccountResponse.Validate {
 		http_response.ErrorResponse(response, http.StatusNotFound, message.ResponseMessage.ItemNotFound)

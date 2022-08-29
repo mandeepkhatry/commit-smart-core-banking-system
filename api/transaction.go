@@ -26,12 +26,15 @@ func ListTransaction(response http.ResponseWriter, request *http.Request) {
 		http_response.ErrorResponse(response, http.StatusInternalServerError, message.ResponseMessage.SomethingWentWrong)
 		return
 	}
+
+	//Validate Request Body
 	validateResp := validator.ValidateRequest(txnFilter)
 	if !validateResp.Validate {
 		http_response.ErrorResponse(response, http.StatusBadRequest, validateResp.Errors)
 		return
 	}
 
+	//Get AccountId From Token and Validate Account
 	accountId := GetAccountIdFromRequest(request)
 	accountResponse := ValidateAccount(accountId)
 	if !accountResponse.Validate {
@@ -55,6 +58,7 @@ func ListTransaction(response http.ResponseWriter, request *http.Request) {
 	http_response.Response(response, http.StatusCreated, customerTransactions)
 }
 
+//Deserialize Monetary Value of Txn Object from Database
 func DeserializedTxns(list model.ListTxnResponse) model.ListTransactionResponse {
 	var txnList model.ListTransactionResponse
 	for _, txn := range list.Txn {

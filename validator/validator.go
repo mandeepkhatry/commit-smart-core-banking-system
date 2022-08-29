@@ -13,6 +13,7 @@ type ValidateRequestResp struct {
 	Validate bool
 }
 
+//Validate data with respect to validation rules from it's corresponding struct
 func ValidateRequest(data interface{}) ValidateRequestResp {
 	var errors []*ValidationError
 	var Validator = go_validator.New()

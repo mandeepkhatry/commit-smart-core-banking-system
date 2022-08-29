@@ -4,6 +4,7 @@ import (
 	"github.com/commit-smart-core-banking-system/model"
 )
 
+//DatasStore Signatures
 type DataStore interface {
 	Connection
 	CreateCustomer(model.Customer) (model.CustomerResponse, error)

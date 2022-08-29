@@ -19,12 +19,14 @@ func Deposit(response http.ResponseWriter, request *http.Request) {
 	var depositRequest model.TransactionRequest
 	json.NewDecoder(request.Body).Decode(&depositRequest)
 
+	//Validate Request Body
 	validateResp := validator.ValidateRequest(depositRequest)
 	if !validateResp.Validate {
 		http_response.ErrorResponse(response, http.StatusBadRequest, validateResp.Errors)
 		return
 	}
 
+	//Get AccountId From Token and Validate Account
 	depositRequest.AccountId = GetAccountIdFromRequest(request)
 	accountResponse := ValidateAccount(depositRequest.AccountId)
 

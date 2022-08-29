@@ -20,6 +20,7 @@ func CustomerRegister(response http.ResponseWriter, request *http.Request) {
 	var customerRequest model.CustomerRequest
 	json.NewDecoder(request.Body).Decode(&customerRequest)
 
+	//Validate Request Body
 	validateResp := validator.ValidateRequest(customerRequest)
 	if !validateResp.Validate {
 		http_response.ErrorResponse(response, http.StatusBadRequest, validateResp.Errors)

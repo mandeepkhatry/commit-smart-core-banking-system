@@ -13,6 +13,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
+//Auth Middleware
 func IsAuthorized(handler http.HandlerFunc) http.HandlerFunc {
 	return func(response http.ResponseWriter, request *http.Request) {
 

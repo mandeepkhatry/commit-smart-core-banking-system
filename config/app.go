@@ -2,6 +2,10 @@ package config
 
 import "github.com/spf13/viper"
 
+/*
+	Set of all configurations used in the app
+*/
+
 type AppConfig struct {
 	DbDriver      string `mapstructure:"DB_DRIVER"`
 	DbSource      string `mapstructure:"DB_SOURCE"`

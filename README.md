@@ -23,7 +23,7 @@ Link for API documentation can be found   [here](https://documenter.getpostman.c
 
 - Clone the repository 
     ```
-    git clone git@github.com:mandeepkhatry commit-smart-core-banking-system.git
+    git clone git@github.com:mandeepkhatry/commit-smart-core-banking-system.git
     ```
 - Run following command to setup database: 
     ```

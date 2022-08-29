@@ -26,6 +26,7 @@ type NewDataStoreClientResp struct {
 	Error error
 }
 
+//Initialize new store based on db driver
 func NewDataStoreClient(options DataStoreOptions) NewDataStoreClientResp {
 	return availDataStores[options.DbDriver](options)
 }
